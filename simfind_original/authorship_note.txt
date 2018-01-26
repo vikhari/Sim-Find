@@ -1,0 +1,2 @@
+Version 1 of SimFind (Python implementation) was developed by Dr. Frank Breitinger
+and has been included for completeness, comparison, & community usage/improvement.
