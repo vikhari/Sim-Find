@@ -1,0 +1,107 @@
+~~~~~ INSTRUCTIONS FOR SIMFIND V2.0 ~~~~~
+
+----------------------------------------------------------------------------------------------
+
+INSTALLATION:
+
+Before attempting to get the newest version try the tarballs provided.
+
+- Apt-Get:					update, upgrade / install git / install pkg-config / install libssl-dev / libsasl2-dev / libboost-alldev / install libgcrypt20-dev
+
+- Apt:						install mongodb-clients 
+
+- Install MongoC: 			https://mongoc.org/libmongoc/current/installing.html
+								>	tar xzf mongo-c-driver-1.4.2.tar.gz
+								>	cd mongo-c-driver-1.4.2
+								>	./configure --disable-automatic-init-and-cleanup
+								>	make
+								>	sudo make install
+
+- Install LibBson:			https://mongoc.org/libbson/1.3.5/installing.html
+								>	tar -xzf libbson-1.3.5.tar.gz
+								>	cd libbson-1.3.5
+								>	./configure --prefix=/usr --libdir=/usr/lib64
+								>	make
+								>	sudo make install
+
+- Install LibMongoCXX:		https://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/installation/
+								>	unzip mongo-cxx-driver-r3.0.2.zip
+								>	cd mongo-cxx-driver-r3.0.2/build
+								>	PKG_CONFIG_PATH="/usr/local/lib/pkgconfig"
+								>	cmake -DCMAKE_BUILD_TYPE=Release -DBSONCXX_POLY_USE_MNMLSTC=1 -DCMAKE_INSTALL_PREFIX=/usr/local ..
+								>	cd into the parent folder (up from 'build)
+								>	sudo make EP_mnmlstc_core
+								>	make && sudo make install
+
+- MongoDB Shell:			Install:
+								>	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+								>	echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+								>	sudo apt-get update
+								>	sudo apt-get install -y mongodb-org
+							Create /etc/systemd/system/mongod.service with the following lines:
+								>	[Unit]
+								>	Description=High-performance, schema-free deocument-oriented beast
+								>	After=network.target
+								>	Documentation=https://docs.mongodb.org/manual
+								>	[Service]
+								>	User=mongodb
+								>	Group=mongodb
+								>	ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf
+								>	[Install]
+								>	WantedBy=multi-user.target
+							Start and test:
+								>	sudo systemctl enable mongod.service
+								>	sudo systemctl start mongod.service
+								>	mongo
+								>	rs.initiate() (within shell; if this throws error you may have a slight config issue to fix)
+								>	exit
+
+- SimFind:					Make test directories (see directory structure below):
+								>	mkdir test_files
+								>	mkdir query_files
+							Compile (from within root installation directory):
+								>	bash ./compile_create.sh
+								>	bash ./compile_query.sh
+
+
+
+----------------------------------------------------------------------------------------------
+
+USING MONGO DATABASES:
+
+- Shell:			https://docs.mongodb.com/manual/reference/mongo-shell
+                    Useful commands include 'show databases', 'use simdb', 'db.feature_list.find().pretty()', db.dropDatabase()
+- Tutorial: 		https://mongodb.github.io/mongo-cxx-driver/mongocxx-v3/tutorial
+- Documenation: 	https://mongodb.github.io/mongo-cxx-driver/api/mongocxx-3.0.2
+- Examples:			https://github.com/mongodb/mongo-cxx-driver/tree/releases/stable/examples
+- Other (outdated):	https://mongodb-documentation.readthedocs.io/en/latest/ecosystem/tutorial/getting-started-with-cpp-driver.html
+
+
+
+----------------------------------------------------------------------------------------------
+
+DIRECTORY STRUCTURE:
+
+/compile_sf_create.sh
+/compile_sf_query.sh
+/simfind/run_sf_create
+/simfind/run_sf_query
+/simfind/sf_create.cpp
+/simfind/sf_query.cpp
+/simfind/cpp_files/<cpp_source_files>
+/simfind/test_files/<files_for_database_creation>
+/simfind/query_files/<files_to_perform_queries_on>
+
+
+
+----------------------------------------------------------------------------------------------
+
+RUNNING SIMFIND:
+
+1) Place files to create database in test_files directory.
+
+2) Run from terminal (must cd into mysim first):		time run_sf_create
+
+3) Place files to query database in query_files directory.
+
+4) Run from terminal (must cd into mysim first):		time run_sf_query
