@@ -100,8 +100,8 @@ RUNNING SIMFIND:
 
 1) Place files to create database in test_files directory.
 
-2) Run from terminal (must cd into mysim first):		time run_sf_create
+2) Run from terminal (must cd into simfind/ first):		time run_sf_create
 
 3) Place files to query database in query_files directory.
 
-4) Run from terminal (must cd into mysim first):		time run_sf_query
+4) Run from terminal (must cd into simfind/ first):		time run_sf_query
