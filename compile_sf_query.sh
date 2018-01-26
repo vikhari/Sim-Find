@@ -3,7 +3,8 @@
 # Use this file to compile.
 
 echo "Compilation starting ~~~~~~~~~~~~~~"
-# Used with SQLite3.
+
+# Used with SQLite3 (this is a remnant and can be ignored).
 #g++ ./mysim/main.cpp -o ./mysim/runsf -lboost_system -lboost_filesystem
 
 # Used with MongoDB.
