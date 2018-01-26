@@ -3,9 +3,9 @@
 
 //-------------------------------------------------------------------------------------------
 // Needed for importing modularized SimFind functions.
-#include "cpp_files/FileList.hpp"
-#include "cpp_files/Hashing.hpp"
-#include "cpp_files/QueryMongo.hpp"
+#include "hpp_files/FileList.hpp"
+#include "hpp_files/Hashing.hpp"
+#include "hpp_files/QueryMongo.hpp"
 
 // Needed for MongoDB connection.
 #include <mongocxx/instance.hpp>

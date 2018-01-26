@@ -88,7 +88,7 @@ DIRECTORY STRUCTURE:
 /simfind/run_sf_query
 /simfind/sf_create.cpp
 /simfind/sf_query.cpp
-/simfind/cpp_files/<cpp_source_files>
+/simfind/hpp_files/<source_files>
 /simfind/test_files/<files_for_database_creation>
 /simfind/query_files/<files_to_perform_queries_on>
 
